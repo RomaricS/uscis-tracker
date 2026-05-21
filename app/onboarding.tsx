@@ -2,6 +2,7 @@ import { View, Platform, Alert } from 'react-native'
 import { YStack, Text, Button } from 'tamagui'
 import * as AppleAuthentication from 'expo-apple-authentication'
 import * as Crypto from 'expo-crypto'
+import * as WebBrowser from 'expo-web-browser'
 import { supabase } from '../src/lib/supabase'
 import { useRouter } from 'expo-router'
 import { useSession } from '../src/hooks/useSession'
@@ -16,7 +17,7 @@ export default function OnboardingScreen() {
     if (!loading && session) {
       router.replace('/')
     }
-  }, [session, loading])
+  }, [session, loading, router])
 
   async function signInWithApple() {
     try {
@@ -32,9 +33,10 @@ export default function OnboardingScreen() {
         ],
         nonce: hashedNonce,
       })
+      if (!credential.identityToken) throw new Error('Apple did not return an identity token.')
       const { error } = await supabase.auth.signInWithIdToken({
         provider: 'apple',
-        token: credential.identityToken!,
+        token: credential.identityToken,
         nonce: rawNonce,
       })
       if (error) throw error
@@ -46,14 +48,17 @@ export default function OnboardingScreen() {
   }
 
   async function signInWithGoogle() {
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: 'uscis-tracker://auth/callback',
         skipBrowserRedirect: true,
       },
     })
-    if (error) Alert.alert('Sign in failed', error.message)
+    if (error) { Alert.alert('Sign in failed', error.message); return }
+    if (data.url) {
+      await WebBrowser.openAuthSessionAsync(data.url, 'uscis-tracker://auth/callback')
+    }
   }
 
   return (
