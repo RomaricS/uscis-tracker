@@ -22,6 +22,12 @@ const jakartaFont = createFont({
     semibold: '600',
     bold: '700',
   },
+  face: {
+    '400': { normal: 'PlusJakartaSans_400Regular' },
+    '500': { normal: 'PlusJakartaSans_500Medium' },
+    '600': { normal: 'PlusJakartaSans_600SemiBold' },
+    '700': { normal: 'PlusJakartaSans_700Bold' },
+  },
   letterSpacing: {
     md: 0,
   },

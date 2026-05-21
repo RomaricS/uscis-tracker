@@ -12,6 +12,24 @@ export const darkTheme = {
   primaryDim:    'rgba(160,56,78,0.12)',
   border:        'rgba(255,255,255,0.07)',
   success:       color.success,
+
+  // Standard Tamagui keys (required by built-in components)
+  background:           color.neutral900,
+  backgroundHover:      '#201C2E',
+  backgroundPress:      '#16131F',
+  backgroundFocus:      '#14111C',
+  color:                '#F0EEF5',
+  colorHover:           '#F0EEF5',
+  colorPress:           color.neutral500,
+  colorFocus:           '#F0EEF5',
+  borderColor:          'rgba(255,255,255,0.07)',
+  borderColorHover:     color.bordeaux400,
+  borderColorPress:     color.bordeaux500,
+  borderColorFocus:     color.bordeaux500,
+  shadowColor:          'rgba(0,0,0,0.3)',
+  shadowColorHover:     'rgba(0,0,0,0.4)',
+  shadowColorPress:     'rgba(0,0,0,0.5)',
+  shadowColorFocus:     'rgba(0,0,0,0.4)',
 }
 
 export const lightTheme = {
@@ -26,4 +44,22 @@ export const lightTheme = {
   primaryDim:    'rgba(160,56,78,0.08)',
   border:        'rgba(0,0,0,0.07)',
   success:       color.success,
+
+  // Standard Tamagui keys (required by built-in components)
+  background:           color.neutral50,
+  backgroundHover:      '#EEEAF6',
+  backgroundPress:      '#F5F2FA',
+  backgroundFocus:      color.neutral100,
+  color:                '#1A1626',
+  colorHover:           '#1A1626',
+  colorPress:           '#6A6478',
+  colorFocus:           '#1A1626',
+  borderColor:          'rgba(0,0,0,0.07)',
+  borderColorHover:     color.bordeaux400,
+  borderColorPress:     color.bordeaux500,
+  borderColorFocus:     color.bordeaux500,
+  shadowColor:          'rgba(0,0,0,0.06)',
+  shadowColorHover:     'rgba(0,0,0,0.09)',
+  shadowColorPress:     'rgba(0,0,0,0.12)',
+  shadowColorFocus:     'rgba(0,0,0,0.09)',
 }
