@@ -1,0 +1,42 @@
+{
+  "expo": {
+    "name": "USCIS CR1 Tracker",
+    "slug": "uscis-cr1-tracker",
+    "version": "1.0.0",
+    "scheme": "uscis-tracker",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.romaricsegla.usciscr1tracker"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundColor": "#A0384E"
+      },
+      "package": "com.romaricsegla.usciscr1tracker"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-notifications",
+        {
+          "color": "#A0384E"
+        }
+      ],
+      "expo-font",
+      "expo-web-browser",
+      "expo-apple-authentication"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "supabaseUrl": "",
+      "supabaseAnonKey": ""
+    }
+  }
+}

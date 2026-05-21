@@ -1,0 +1,8 @@
+# Supabase local development config
+# Run: supabase init to generate the full config
+
+[api]
+port = 54321
+
+[db]
+port = 5432
