@@ -27,7 +27,7 @@ export function parseUSCISStatus(statusText: string): CR1Stage | null {
     text.includes('case was approved') ||
     text.includes('case has been approved') ||
     text.includes('case was transferred') ||
-    text.includes('notice was sent') ||
+    text.includes('approval notice was sent') ||
     text.includes('card was produced') ||
     text.includes('card was mailed')
   ) {

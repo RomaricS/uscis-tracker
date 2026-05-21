@@ -8,10 +8,10 @@ import { VisaType } from '../src/types'
 import { color, space, radius, fontSize } from '../src/tokens'
 
 function validateReceiptNumber(value: string): string | null {
-  const trimmed = value.trim()
+  const trimmed = value.trim().toUpperCase()
   if (!trimmed) return 'Receipt number is required'
   if (trimmed.length < 10) return 'Receipt number must be at least 10 characters'
-  if (!/^[A-Z0-9-]+$/.test(trimmed)) return 'Receipt number must contain only uppercase letters, digits, and hyphens'
+  if (!/^[A-Z0-9-]+$/.test(trimmed)) return 'Receipt number must contain only letters, digits, and hyphens'
   return null
 }
 
@@ -50,7 +50,7 @@ export default function AddCaseScreen() {
     try {
       const { error: insertError } = await supabase.from('cases').insert({
         user_id: session.user.id,
-        receipt_no: receiptNo.trim(),
+        receipt_no: receiptNo.trim().toUpperCase(),
         visa_type: visaType,
         consulate: consulate.trim() || null,
         country_birth: countryBirth.trim() || null,

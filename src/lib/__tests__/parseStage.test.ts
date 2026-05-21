@@ -25,8 +25,20 @@ describe('parseUSCISStatus', () => {
     expect(parseUSCISStatus('Case Was Transferred And A New Office Has Jurisdiction')).toBe('I130_APPROVED')
   })
 
-  it('maps "Notice Was Sent" to I130_APPROVED', () => {
-    expect(parseUSCISStatus('Notice Was Sent')).toBe('I130_APPROVED')
+  it('maps "Approval Notice Was Sent" to I130_APPROVED', () => {
+    expect(parseUSCISStatus('Approval Notice Was Sent')).toBe('I130_APPROVED')
+  })
+
+  it('does not mis-classify generic "Notice Was Sent" as I130_APPROVED', () => {
+    expect(parseUSCISStatus('Notice Was Sent')).toBeNull()
+  })
+
+  it('maps "Card Was Produced" to I130_APPROVED', () => {
+    expect(parseUSCISStatus('Card Was Produced')).toBe('I130_APPROVED')
+  })
+
+  it('maps "Case Was Updated" to USCIS_RECEIVED', () => {
+    expect(parseUSCISStatus('Case Was Updated')).toBe('USCIS_RECEIVED')
   })
 
   it('returns null for unrecognized status', () => {
