@@ -9,7 +9,7 @@ import { color } from '../src/tokens'
 import type { Case } from '../src/types'
 
 export default function CommunityETAScreen() {
-  const { session } = useSession()
+  const { session, loading: sessionLoading } = useSession()
   const [currentCase, setCurrentCase] = useState<Case | null>(null)
   const [etas, setEtas] = useState<Record<string, StageETA>>({})
   const [loading, setLoading] = useState(true)
@@ -27,6 +27,7 @@ export default function CommunityETAScreen() {
   }, [session])
 
   useEffect(() => {
+    if (sessionLoading) return
     if (!currentCase) { setLoading(false); return }
 
     const currentYear = new Date().getFullYear()
@@ -41,13 +42,15 @@ export default function CommunityETAScreen() {
           year: currentYear,
         }).then(eta => ({ stage, eta }))
       )
-    ).then(results => {
-      const etaMap: Record<string, StageETA> = {}
-      results.forEach(({ stage, eta }) => { etaMap[stage] = eta })
-      setEtas(etaMap)
-      setLoading(false)
-    })
-  }, [currentCase])
+    )
+      .then(results => {
+        const etaMap: Record<string, StageETA> = {}
+        results.forEach(({ stage, eta }) => { etaMap[stage] = eta })
+        setEtas(etaMap)
+      })
+      .catch(() => {})
+      .finally(() => setLoading(false))
+  }, [currentCase, sessionLoading])
 
   if (loading) {
     return (

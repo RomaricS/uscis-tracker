@@ -8,13 +8,25 @@ import {
   PlusJakartaSans_700Bold,
 } from '@expo-google-fonts/plus-jakarta-sans'
 import { useEffect } from 'react'
-import { View } from 'react-native'
+import { Platform, View } from 'react-native'
+import * as Notifications from 'expo-notifications'
 import config from '../tamagui.config'
 import { useSession } from '../src/hooks/useSession'
 import OnboardingScreen from './onboarding'
 import { color } from '../src/tokens'
 
+const NOTIFICATION_CHANNEL_ID = 'case-reminders'
+
 SplashScreen.preventAutoHideAsync()
+
+// Set up Android notification channel
+if (Platform.OS === 'android') {
+  Notifications.setNotificationChannelAsync(NOTIFICATION_CHANNEL_ID, {
+    name: 'Case Reminders',
+    importance: Notifications.AndroidImportance.DEFAULT,
+    vibrationPattern: [0, 250, 250, 250],
+  })
+}
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
