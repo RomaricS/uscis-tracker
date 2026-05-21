@@ -2,10 +2,10 @@ import { View } from 'react-native'
 import { Text } from 'tamagui'
 import { color } from '../src/tokens'
 
-export default function HomeScreen() {
+export default function SettingsScreen() {
   return (
     <View style={{ flex: 1, backgroundColor: color.neutral50, alignItems: 'center', justifyContent: 'center' }}>
-      <Text fontSize="$lg" color={color.neutral700}>Stage Map coming soon</Text>
+      <Text fontSize="$lg" color={color.neutral700}>Settings coming soon</Text>
     </View>
   )
 }
