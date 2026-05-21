@@ -26,3 +26,6 @@ create index if not exists ct_visa_stage_idx
 
 create index if not exists ct_visa_stage_consulate_year_idx
   on community_timelines (visa_type, stage, consulate, year);
+
+create index if not exists ct_visa_stage_consulate_birth_year_idx
+  on community_timelines (visa_type, stage, consulate, country_birth, year);

@@ -3,7 +3,7 @@ create table if not exists cases (
   id                uuid        primary key default gen_random_uuid(),
   user_id           uuid        references auth.users not null,
   receipt_no        text        not null,
-  visa_type         text        not null check (visa_type in ('CR1', 'IR1')),
+  visa_type         text        not null,
   consulate         text,
   country_birth     text,
   current_stage     text,

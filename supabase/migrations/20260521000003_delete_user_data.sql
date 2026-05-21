@@ -14,3 +14,6 @@ begin
   delete from cases where user_id = target_user_id;
 end;
 $$;
+
+revoke execute on function delete_user_data(uuid) from public;
+grant execute on function delete_user_data(uuid) to authenticated;
