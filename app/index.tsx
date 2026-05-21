@@ -29,6 +29,7 @@ export default function HomeScreen() {
   const { session } = useSession()
   const [currentCase, setCurrentCase] = useState<Case | null>(null)
   const [checking, setChecking] = useState(false)
+  const [checkError, setCheckError] = useState<string | null>(null)
 
   useEffect(() => {
     if (!session) return
@@ -41,16 +42,21 @@ export default function HomeScreen() {
   }, [session])
 
   async function checkCase() {
+    if (!session) return
     setChecking(true)
+    setCheckError(null)
     try {
       // Will be replaced with real Supabase Edge Function call in Task 13
-      const { data: cases } = await supabase
+      const { data: cases, error: fetchError } = await supabase
         .from('cases')
         .select('*')
-        .eq('user_id', session!.user.id)
+        .eq('user_id', session.user.id)
         .single()
 
+      if (fetchError) throw fetchError
       if (cases) setCurrentCase(cases as Case)
+    } catch {
+      setCheckError('Could not check your case. Please try again.')
     } finally {
       setChecking(false)
     }
@@ -266,6 +272,12 @@ export default function HomeScreen() {
                 </Text>
               )}
             </TouchableOpacity>
+
+            {checkError && (
+              <Text fontSize={fontSize.sm} color={color.error} textAlign="center">
+                {checkError}
+              </Text>
+            )}
 
             {/* Community ETA link */}
             <TouchableOpacity
