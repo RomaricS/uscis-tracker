@@ -85,7 +85,7 @@ export default function OnboardingScreen() {
 
         {/* Sign-in buttons */}
         <YStack gap="$3" paddingBottom="$8">
-          {Platform.OS === 'ios' && (
+          {Platform.OS === 'ios' && AppleAuthentication.AppleAuthenticationButton && (
             <AppleAuthentication.AppleAuthenticationButton
               buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
               buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.WHITE}
