@@ -35,8 +35,8 @@
       "typedRoutes": true
     },
     "extra": {
-      "supabaseUrl": "",
-      "supabaseAnonKey": ""
+      "supabaseUrl": "https://rzdzipzklxvpxnxrcavc.supabase.co",
+      "supabaseAnonKey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6ZHppcHprbHh2cHhueHJjYXZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkzOTA4OTAsImV4cCI6MjA5NDk2Njg5MH0.Tqk-N94wWS6l-V2B84i55qk7bnn6gl4H6A-oiH2nfbo"
     }
   }
 }
